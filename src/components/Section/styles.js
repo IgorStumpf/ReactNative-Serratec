@@ -4,11 +4,7 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
 	container: {
-		paddingBottom: 20,
-		top: 0,
-		height: "100%",
-		marginTop: 0,
-		padding: 20,
+		padding: 15,
 	},
 	textContainer: {
 		height: 70,
@@ -17,11 +13,10 @@ export const styles = StyleSheet.create({
 		shadowColor: "#000",
 		shadowOffset: { width: 0, height: 25 },
 		shadowOpacity: 0.07,
-		shadowRadius: 5,
-		elevation: 26,
+		shadowRadius: 15,
+		elevation: 8,
 		borderRadius: 20,
 		justifyContent: "center",
-		marginBottom: 12,
 	},
 	inside: {
 		flexDirection: "row",

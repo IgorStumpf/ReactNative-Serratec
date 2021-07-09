@@ -5,21 +5,23 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { COLORS, FONT } from "../../Global/styles/theme";
 import { Feather } from "@expo/vector-icons";
-import { getCliente } from "../services/Cliente";
 
-export const Section = ({ nome }) => {
+export const Section = ({ nome, id }) => {
+	function handleAddClient() {}
+
 	function handleDeleteClient() {}
 
 	return (
 		<View style={styles.container}>
 			<View style={styles.textContainer}>
 				<View style={styles.inside}>
-					<TouchableOpacity>
-						<Text style={styles.textInside}>{nome}</Text>
-					</TouchableOpacity>
+					<Text style={styles.textInside}>
+						{nome}
+						{id}
+					</Text>
 
 					<View style={styles.iconContainer}>
-						<TouchableOpacity>
+						<TouchableOpacity onPress={handleAddClient}>
 							<Feather
 								style={styles.icon}
 								name="edit"

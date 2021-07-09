@@ -3,7 +3,7 @@ import { TextInput, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { styles } from "./styles";
 
-export const SearchButton = () => {
+export const SearchButton = ({ searchData }) => {
 	const [text, onChangeText] = useState(null);
 
 	return (
@@ -16,7 +16,7 @@ export const SearchButton = () => {
 			/>
 			<TextInput
 				style={styles.searchButton}
-				onChangeText={onChangeText}
+				onChangeText={searchData}
 				value={text}
 				placeholder="Pesquisar clientes"
 			></TextInput>

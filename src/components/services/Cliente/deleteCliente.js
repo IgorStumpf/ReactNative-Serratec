@@ -1,60 +1,47 @@
-import React, { useState, useEffect } from "react";
-import { Button, Form } from "react-bootstrap";
+import * as React from "react";
+import { Text, View, TouchableOpacity } from "react-native";
+import { api } from "../api";
+import axios from "axios";
 
-// const DropClienteScreen = () => {
-// 	const [id, setId] = useState("");
-// 	const [listaClientes, setListaClientes] = useState([]);
+const DeleteCliente = () => {
+	state = {
+		//    this.getCliente
+		// id: 5,
+		// nome: "Cleberson Carlos",
+		// usuario: "clebinho",
+		// cpf:56943214055,
+		// email:"kleb1990@email.com",
+		// dataNascimento:"2001-07-11T00:00:00Z",
+		// endereco:
+		//         {rua:"Rua das Ruas",
+		//         numero:99,
+		//         complemento:"",
+		//         bairro:"Distrito 1",
+		//         cidade:"Cidade-Alerta",
+		//         estado:"AL",
+		//         cep:52742264}
+	};
 
-// 	useEffect(() => {
-// 		const getListaClientes = () => {
-// 			api.get("/cliente")
-// 				.then((data) => {
-// 					setListaClientes(data.data);
-// 					console.log(listaClientes);
-// 				})
-// 				.catch((error) => alert(error));
-// 		};
-// 		getListaClientes();
-// 	}, []);
+	onRequest = async () => {
+		try {
+			const res = await axios.delete(
+				"https://ecommerce-api-penguin.herokuapp.com/cliente",
+				{ ...this.state }
+			);
+			return res.data;
+		} catch (erro) {
+			console.log("erro : ", erro);
+		}
+	};
+	return (
+		<>
+			<View>
+				<TouchableOpacity onPress={this.onRequest}>
+					<Text> Deletar </Text>
+				</TouchableOpacity>
+			</View>
+		</>
+	);
+};
 
-// 	const submit = (e) => {
-// 		deleteCliente();
-// 	};
-// 	const deleteCliente = () => {
-
-// 		api.delete(`/cliente/${ parseInt(id, 10)}`)
-// 			.then((d) => {
-// 				alert("Deletado com sucesso!")
-// 				console.log(d);
-// 			})
-// 			.catch((error) => alert(error));
-// 	};
-// 	return (
-// 		<FormContainer>
-// 			<Form
-// 				onSubmit={(e) => {
-// 					e.preventDefault();
-// 					submit(e);
-// 				}}
-// 			>
-// 				<Form.Group controlId="cliente">
-// 					<Form.Label>Cliente</Form.Label>
-// 					<Form.Control
-// 						as="select"
-// 						onChange={(e) => setId(e.target.value)}
-// 					>
-// 						{listaClientes.map((cliente) => (
-// 							<option value={cliente.id}>{cliente.nome}</option>
-// 						))}
-// 						;
-// 					</Form.Control>
-// 				</Form.Group>
-// 				<Button type="submit" variant="primary">
-// 					Deletar Cliente
-// 				</Button>
-// 			</Form>
-// 		</FormContainer>
-// 	);
-// };
-
-// export default DropCliente
+export default DeleteCliente;
