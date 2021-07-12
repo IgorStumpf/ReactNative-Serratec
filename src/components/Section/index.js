@@ -6,22 +6,15 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { COLORS, FONT } from "../../Global/styles/theme";
 import { Feather } from "@expo/vector-icons";
 
-export const Section = ({ nome, id }) => {
-	function handleAddClient() {}
-
-	function handleDeleteClient() {}
-
+export const Section = ({ nome, id, handleShowModal, handleUpdate }) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.textContainer}>
 				<View style={styles.inside}>
-					<Text style={styles.textInside}>
-						{nome}
-						{id}
-					</Text>
+					<Text style={styles.textInside}>{nome}</Text>
 
 					<View style={styles.iconContainer}>
-						<TouchableOpacity onPress={handleAddClient}>
+						<TouchableOpacity onPress={handleUpdate}>
 							<Feather
 								style={styles.icon}
 								name="edit"
@@ -29,7 +22,7 @@ export const Section = ({ nome, id }) => {
 								color={COLORS.ELEMENT_COLOR}
 							/>
 						</TouchableOpacity>
-						<TouchableOpacity onPress={handleDeleteClient}>
+						<TouchableOpacity onPress={handleShowModal}>
 							<MaterialIcons
 								style={styles.icon}
 								name="delete-outline"

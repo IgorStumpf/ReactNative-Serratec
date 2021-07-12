@@ -3,9 +3,7 @@ import { TextInput, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { styles } from "./styles";
 
-export const SearchButton = ({ searchData }) => {
-	const [text, onChangeText] = useState(null);
-
+export const SearchButton = ({ handleSearch, query }) => {
 	return (
 		<View style={styles.container}>
 			<FontAwesome
@@ -16,10 +14,13 @@ export const SearchButton = ({ searchData }) => {
 			/>
 			<TextInput
 				style={styles.searchButton}
-				onChangeText={searchData}
-				value={text}
+				onChangeText={(queryText) => handleSearch(queryText)}
+				autoCapitalize="none"
+				clearButtonMode="always"
+				autoCorrect={false}
+				value={query}
 				placeholder="Pesquisar clientes"
-			></TextInput>
+			/>
 		</View>
 	);
 };

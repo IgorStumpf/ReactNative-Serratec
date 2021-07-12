@@ -1,13 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 
 import { Routes } from "./src/routes/";
+import { ClientProvider } from "./src/Contexts/ClientContext";
 
 import {
-	Roboto_300Regular,
 	Roboto_400Regular,
 	Roboto_500Medium,
 	Roboto_700Bold,
@@ -23,13 +22,13 @@ export default function App() {
 		return <AppLoading />;
 	}
 	return (
-		<>
+		<ClientProvider>
 			<Routes />
 			<StatusBar
 				barStyle="light-content"
 				backgroundColor="transparent"
 				translucent
 			/>
-		</>
+		</ClientProvider>
 	);
 }

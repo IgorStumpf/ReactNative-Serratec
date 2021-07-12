@@ -6,15 +6,10 @@ import { View, Modal, ModalProps } from "react-native";
 
 import { styles } from "./styles";
 
-export function ModalView({ Children }) {
+export function ModalView({ children, isVisible }) {
 	return (
-		<Modal animationType="slide">
-			<View style={styles.overlay}>
-				<View style={styles.container}>
-					<View style={styles.bar} />
-					{Children}
-				</View>
-			</View>
+		<Modal animationType="slide" visible={isVisible}>
+			<View style={styles.overlay}>{children}</View>
 		</Modal>
 	);
 }
