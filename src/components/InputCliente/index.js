@@ -3,7 +3,7 @@ import { View, Text, TextInput } from "react-native";
 
 import { styles } from "./styles";
 
-export const InputClient = ({
+export const InputCliente = ({
 	label,
 	placeHold,
 	type,
@@ -21,7 +21,7 @@ export const InputClient = ({
 					style={styles.textInput}
 					defaultValue={value}
 					keyboardType={type === "numeric" ? "numeric" : "default"}
-					onChangeText={onChangeText}
+					onChangeText={(value) => onChangeText(value)}
 				/>
 			</View>
 		</View>

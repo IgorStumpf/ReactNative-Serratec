@@ -6,12 +6,23 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { COLORS, FONT } from "../../Global/styles/theme";
 import { Feather } from "@expo/vector-icons";
 
-export const Section = ({ nome, id, handleShowModal, handleUpdate }) => {
+export const Section = ({
+	nome,
+	id,
+	handleShowModal,
+	handleUpdate,
+	handleClientModal,
+}) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.textContainer}>
 				<View style={styles.inside}>
-					<Text style={styles.textInside}>{nome}</Text>
+					<TouchableOpacity
+						onPress={handleClientModal}
+						style={styles.textInside}
+					>
+						<Text>{nome}</Text>
+					</TouchableOpacity>
 
 					<View style={styles.iconContainer}>
 						<TouchableOpacity onPress={handleUpdate}>

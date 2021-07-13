@@ -15,6 +15,8 @@ import { AddButton } from "../../components/AddButton";
 import { ModalDeleteClient } from "../../components/ModalDeleteClient";
 import { deleteCliente } from "../../components/services/Cliente";
 import { ClientContext } from "../../Contexts/ClientContext";
+import { ModalClientInformation } from "../../components/ModalClientInformation";
+
 export const Home = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [clientes, setClientes] = useState([]);
@@ -22,14 +24,11 @@ export const Home = () => {
 	const [id, setId] = useState(null);
 	const [fullData, setFullData] = useState([]);
 	const [query, setQuery] = useState("");
+	const [openClientInfoModal, setOpenClientInfoModal] = useState(false);
 
 	const clienteContext = useContext(ClientContext);
 
 	const navigation = useNavigation();
-
-	function handleAddClient() {
-		navigation.navigate("AddClient");
-	}
 
 	function handleUpdateClient(client) {
 		clienteContext.setCliente(client);
@@ -45,6 +44,16 @@ export const Home = () => {
 		setOpenDeleteModal(false);
 	}
 
+	function handleOpenClientInfoModal(client) {
+		// console.log(client);
+		clienteContext.setCliente(client);
+		setOpenClientInfoModal(true);
+	}
+
+	function handleCloseClientModal() {
+		setOpenClientInfoModal(false);
+	}
+
 	function handleDeleteClient() {
 		deleteCliente(id)
 			.then(() => {
@@ -53,7 +62,6 @@ export const Home = () => {
 			})
 			.catch((err) => {
 				console.error("ops! ocorreu um erro" + err);
-				console.log(id);
 			});
 	}
 
@@ -102,7 +110,7 @@ export const Home = () => {
 	}
 
 	function goAddClientScreen() {
-		navigation.navigate("AdicionaCliente");
+		navigation.navigate("AddClient");
 	}
 
 	return (
@@ -115,9 +123,13 @@ export const Home = () => {
 					renderItem={({ item }) => (
 						<Section
 							nome={item.nome}
+							id={item.id}
 							handleUpdate={() => handleUpdateClient(item)}
 							handleShowModal={() =>
 								handleOpenDeleteModal(item.id)
+							}
+							handleClientModal={() =>
+								handleOpenClientInfoModal(item)
 							}
 						/>
 					)}
@@ -130,6 +142,12 @@ export const Home = () => {
 				<ModalDeleteClient
 					handleDelete={() => handleDeleteClient()}
 					handleCloseModal={() => handleCloseDeleteModal()}
+				/>
+			</ModalView>
+			<ModalView isVisible={openClientInfoModal}>
+				<ModalClientInformation
+					id={id}
+					handleClose={() => handleCloseClientModal()}
 				/>
 			</ModalView>
 		</View>

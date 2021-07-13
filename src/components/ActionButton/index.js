@@ -13,7 +13,7 @@ export const ActionButton = ({
 }) => {
 	return (
 		<TouchableOpacity
-			onPress={() => handleAction()}
+			onPress={handleAction}
 			style={[
 				styles.container,
 				{
